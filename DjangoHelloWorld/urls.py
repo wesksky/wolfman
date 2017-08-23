@@ -18,4 +18,8 @@ urlpatterns = [
 
     # 测试语法接口
     url(r'^test_python$', user_views.test_python, name='test'),
+
+
+    # Gif 图片接口
+    url(r'^getGifs$', user_views.getGifs, name='getGifs'),
 ]

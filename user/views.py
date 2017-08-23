@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from django.shortcuts import render
 from django.http import HttpResponse
+from dao.GifImage import GifImageHelper
 import json
 import pymysql
 import datetime
@@ -12,6 +13,13 @@ pymysql.install_as_MySQLdb()
 
 def index(request):
     return render(request, 'home.html')
+
+def getGifs(request):
+    if request.method == 'GET':
+        page = int(request.GET.get('page', 0))
+        helper = GifImageHelper()
+        gifs = helper.getGifs(page)
+        return HttpResponse(json.dumps(gifs, sort_keys=True))
 
 def bindphone(request):
     # 绑定phone 和 wxuuid
